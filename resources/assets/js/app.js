@@ -16,7 +16,12 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('modal', require('./components/Modal.vue'));
+Vue.component('easyform', require('./components/Form.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    computed: {
+      csrf: function () { return window.Laravel.csrfToken }
+    }
 });

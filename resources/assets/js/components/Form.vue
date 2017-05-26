@@ -1,12 +1,14 @@
 <template>
-    <form class="" :action="data.action" :method="data.method">
+    <form class="" :action="val.action" :method="val.method">
+      <input type="hidden" name="_token" :value="$parent.csrf">
       <div v-for="input in data.input">
-        <input :type="input.type"
-               :name="input.name"
-               :placeholder="input.name"
-               :id="input.name"
-        >
+          <input :type="input.type"
+                 :name="noSpace(input.name)"
+                 :placeholder="input.name"
+                 :id="noSpace(input.name)">
       </div>
+
+      <button type="submit">{{submit}}</button>
     </form>
 </template>
 
@@ -23,9 +25,19 @@
       //     },
       //   }
       // }
-        props: ['data'],
+        data: function () {
+          return {
+            val: ''
+          }
+        },
+        props: ['data', 'submit'],
         mounted() {
-            console.log('Component mounted.')
+            this.val = this.data
+        },
+        methods: {
+          noSpace: function (val) {
+            return val.split(' ').join('-')
+          }
         }
     }
 </script>
