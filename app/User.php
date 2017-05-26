@@ -26,4 +26,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+    public function teams () {
+      return $this->belongsToMany('App\Team');
+    }
+
+    public function roles () {
+      return $this->belongsToMany('App\Role');
+    }
+
+    public static function search ($name) {
+      return User::where('username',$name)->firstOrFail();
+    }
 }

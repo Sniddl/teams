@@ -18,3 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// API
+// @example /user/john/roles
+// Get all the roles from the user john.
+Route::group(['prefix'=> '{type}'], function () {
+  Route::group(['prefix'=> '{value}'], function () {
+    Route::get('roles', 'APIController@roles');
+    Route::get('users', 'APIController@users');
+    Route::get('teams', 'APIController@teams');
+  });
+});
