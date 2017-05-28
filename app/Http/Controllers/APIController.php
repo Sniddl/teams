@@ -7,6 +7,7 @@ use App\Role;
 use App\Team;
 use App\User;
 use App\Permission;
+use Auth;
 
 class APIController extends Controller
 {

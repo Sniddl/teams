@@ -1,5 +1,5 @@
 <template>
-    <div style="margin-bottom: 10px">
+    <div style="margin-bottom: 10px" class="Component Modal">
       <button v-on:click="toggle">{{button}}</button>
       <div class="" v-if="hidden">
         <slot></slot>

@@ -1,15 +1,18 @@
 <template>
-    <form class="" :action="val.action" :method="val.method">
-      <input type="hidden" name="_token" :value="$parent.csrf">
-      <div v-for="input in data.input">
-          <input :type="input.type"
-                 :name="noSpace(input.name)"
-                 :placeholder="input.name"
-                 :id="noSpace(input.name)">
-      </div>
+    <div class="Component Form">
+      <form class="" :action="val.action" :method="val.method">
+        <input type="hidden" name="_token" :value="$parent.csrf">
+        <div v-for="input in data.input">
+            <input :type="input.type"
+                   :name="noSpace(input.name)"
+                   :placeholder="input.name"
+                   :id="noSpace(input.name)">
+        </div>
 
-      <button type="submit">{{submit}}</button>
-    </form>
+        <button type="submit">{{submit}}</button>
+      </form>
+    </div>
+
 </template>
 
 <script>

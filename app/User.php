@@ -40,4 +40,24 @@ class User extends Authenticatable
     public static function search ($name) {
       return User::where('username',$name)->firstOrFail();
     }
+
+
+    public function hasRole($role){
+      if(is_string($role)){
+        return $this->roles->contains('name', $role);
+      }
+      return !! $role->intersect($this->roles)->count();
+    }
+
+    public function allowedTo($permission, $team=null) {
+      $perms = [];
+      $obj = $this;
+      if ($team) $obj = $team;
+      foreach ($obj->roles as $role) {
+        foreach ($role->permissions as $perm) {
+          array_push($perms, $perm->name);
+        }
+      }
+      return in_array($permission, $perms);
+    }
 }
