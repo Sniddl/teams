@@ -1,8 +1,11 @@
 <template>
-    <div style="margin-bottom: 10px" class="Component Modal">
-      <button v-on:click="toggle">{{button}}</button>
-      <div class="" v-if="hidden">
-        <slot></slot>
+    <div class="Component Modal">
+      <div class="Modal-Toggle" v-on:click="toggle">
+        <slot  name="toggle"></slot>
+      </div>
+
+      <div class="Modal-Hidden" v-if="hidden">
+        <slot name="content"></slot>
       </div>
     </div>
 </template>
@@ -14,7 +17,6 @@
             hidden: false
           }
         },
-        props: ['button'],
         mounted() {
             console.log('Component mounted.')
         },
@@ -26,3 +28,9 @@
         }
     }
 </script>
+
+<style scoped>
+  .Component.Modal, .Modal-Toggle, .Modal-Hidden{
+    display: inline-flex;
+  }
+</style>

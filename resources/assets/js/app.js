@@ -18,6 +18,7 @@ window.Vue = require('vue');
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('easyform', require('./components/Form.vue'));
+Vue.component('module', require('./components/Module.vue'));
 
 const app = new Vue({
     el: '#app',
