@@ -1,9 +1,9 @@
 <template>
     <div class="Component Module" v-on:click="open">
 
-      <div v-if="_name">
+      <div v-if="team">
         <div class="Module-name">
-            {{_name}}
+            {{Team.name}}
         </div>
       </div>
 
@@ -60,18 +60,20 @@
 
 <script>
     export default {
-        props: ["_name", "route"],
+        props: ["team", "route"],
         data: function () {
           return {
+            Team: {},
             showOptions: false,
           }
         },
         mounted() {
-            console.log('Component mounted.')
+          console.log("Module Mounted");
+          if (this.team) this.Team = JSON.parse(this.team)
         },
         methods: {
           open: function () {
-            if (this._name) window.location.href = window.location.origin + this.route
+            if (this.team) this.$root.go(this.route)
 
           },
           create: function () {

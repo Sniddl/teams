@@ -19,10 +19,18 @@ Vue.component('example', require('./components/Example.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('easyform', require('./components/Form.vue'));
 Vue.component('module', require('./components/Module.vue'));
+Vue.component('banner', require('./components/Banner.vue'));
+Vue.component('navbar', require('./components/Navbar.vue'));
 
-const app = new Vue({
+const App = new Vue({
     el: '#app',
+    methods: {
+      go: function (route) {
+        window.location.href = window.location.origin + route
+      }
+    },
     computed: {
-      csrf: function () { return window.Laravel.csrfToken }
+      csrf: function () { return window.Laravel.csrfToken },
+
     }
 });

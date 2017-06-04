@@ -12,12 +12,36 @@
 */
 
 Route::get('/', function () {
+  if(Auth::check()){
+    return redirect()->route('home');
+  }else {
     return view('welcome');
+  }
+
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+
+
+Route::group(['prefix'=> 'team'], function () {
+  Route::post('create', 'TeamController@create');
+  Route::get('{name}', 'TeamController@page');
+});
+
+Route::group(['prefix'=> 'me'], function () {
+  Route::get('dashboard', 'HomeController@index')->name('home');
+  Route::post('logout', function() {
+    Auth::logout();
+    return back();
+  });
+});
+
+
+
 
 
 // API

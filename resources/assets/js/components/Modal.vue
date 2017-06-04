@@ -18,7 +18,7 @@
           }
         },
         mounted() {
-            console.log('Component mounted.')
+            console.log('Modal mounted.')
         },
 
         methods: {

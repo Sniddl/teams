@@ -42,11 +42,23 @@ class User extends Authenticatable
     }
 
 
-    public function hasRole($role){
-      if(is_string($role)){
-        return $this->roles->contains('name', $role);
+    public function hasRole($team, $role){
+      $roles = $this->roles()->where('name', 'like', "$team->name:%")->get();
+      $r = "$team->name:$role";
+      $array = $roles->pluck('name')->all();
+      return in_array($r, $array);
+    }
+
+    public function hasPermission($team, $permission){
+      $roles = $this->roles()->where('name', 'like', "$team->name:%")->get();
+      $array = [];
+      foreach($roles as $role) {
+        $perms = $role->permissions()->get();
+        foreach($perms as $perm) {
+          array_push($array, $perm->name);
+        }
       }
-      return !! $role->intersect($this->roles)->count();
+      return in_array($permission, $array);
     }
 
     public function allowedTo($permission, $team=null) {
