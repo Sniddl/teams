@@ -37,6 +37,10 @@ class User extends Authenticatable
       return $this->belongsToMany('App\Role');
     }
 
+    public function settings () {
+      return $this->belongsToMany('App\Setting');
+    }
+
     public static function search ($name) {
       return User::where('username',$name)->firstOrFail();
     }

@@ -44,6 +44,22 @@ class CreatePivotTables extends Migration
         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         $table->primary(['team_id', 'user_id']);
       });
+
+      Schema::create('setting_user', function (Blueprint $table) {
+        $table->integer('setting_id')->unsigned()->index();
+        $table->foreign('setting_id')->references('id')->on('settings')->onDelete('cascade');
+        $table->integer('user_id')->unsigned()->index();
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        $table->primary(['setting_id', 'user_id']);
+      });
+
+      Schema::create('setting_team', function (Blueprint $table) {
+        $table->integer('setting_id')->unsigned()->index();
+        $table->foreign('setting_id')->references('id')->on('settings')->onDelete('cascade');
+        $table->integer('team_id')->unsigned()->index();
+        $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+        $table->primary(['setting_id', 'user_id']);
+      });
     }
 
     /**

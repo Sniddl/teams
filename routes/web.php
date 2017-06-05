@@ -29,11 +29,16 @@ Auth::routes();
 
 Route::group(['prefix'=> 'team'], function () {
   Route::post('create', 'TeamController@create');
+  Route::get('settings', 'SettingsController@team');
+  Route::group(['prefix'=> 'edit'], function () {
+    Route::get('home', 'EditController@home');
+  });
   Route::get('{name}', 'TeamController@page');
 });
 
 Route::group(['prefix'=> 'me'], function () {
   Route::get('dashboard', 'HomeController@index')->name('home');
+  Route::get('settings', 'SettingsController@user');
   Route::post('logout', function() {
     Auth::logout();
     return back();
