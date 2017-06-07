@@ -29,6 +29,10 @@
                   name: 'name',
                   type: 'text'
                 },
+                {
+                  name: 'url',
+                  type: 'text'
+                },
               ]
             }"></easyform>
           </modal>

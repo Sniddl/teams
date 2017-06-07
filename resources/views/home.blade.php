@@ -10,7 +10,7 @@
                 <div class="panel-body">
 
                     @foreach($teams as $team)
-                    <module team="{{$team}}" route="/team/{{$team->name}}"></module>
+                    <module team="{{$team}}" route="/team/{{$team->url}}"></module>
                     @endforeach
                     <module></module>
 

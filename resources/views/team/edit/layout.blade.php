@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<banner team="{{$team->name}}" edit="editing"></banner>
+<banner team="{{$team->url}}" edit="editing"></banner>
 
 
 <div class="container">

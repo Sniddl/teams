@@ -19,19 +19,19 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        // $teams = Team::with('roles')->get();
-        // // return dump($perms);
-        // foreach ($teams as $team) {
-        //   // echo $team->roles;
-        //   foreach ($team->roles as $role) {
-        //     // echo $role->permissions;
-        //     Gate::define($role->name, function ($user, $team) use ($role){
-        //       echo $role;
-        //       // return $user->hasRole($perm->roles);
-        //     });
-        //   }
-        //
-        // }
+        if (Schema::hasTable('permissions')) {
+          foreach ($this->getPermissions() as $permission) {
+            Gate::define($permission->name, function ($user, $team) use ($permission){
+              return $user->hasPermission($team, $permission->name);
+            });
+          }
+        }
+
+    }
+
+    protected function getPermissions()
+    {
+      return Permission::with('roles')->get();
     }
 
     /**

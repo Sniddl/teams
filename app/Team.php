@@ -26,7 +26,7 @@ class Team extends Model
     return $this->hasMany('App\Post')->orderBy('created_at', 'desc');
   }
 
-  public static function search ($name) {
-    return Team::where('name',$name)->firstOrFail();
+  public static function search ($url) {
+    return Team::where('url',$url)->firstOrFail();
   }
 }

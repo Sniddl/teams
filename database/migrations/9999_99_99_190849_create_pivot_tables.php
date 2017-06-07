@@ -58,7 +58,7 @@ class CreatePivotTables extends Migration
         $table->foreign('setting_id')->references('id')->on('settings')->onDelete('cascade');
         $table->integer('team_id')->unsigned()->index();
         $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
-        $table->primary(['setting_id', 'user_id']);
+        $table->primary(['setting_id', 'team_id']);
       });
     }
 

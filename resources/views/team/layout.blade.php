@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<banner team="{{$team->name}}" edit="{{\Auth::user()->can('edit page', $team)}}"></banner>
+<banner team="{{$team->url}}" edit="{{\Auth::user()->can('edit page', $team)}}"></banner>
 
 
 <div class="container">

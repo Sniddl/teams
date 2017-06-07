@@ -12,10 +12,13 @@ class TeamController extends Controller
 {
     public function create(Request $r) {
       $this->validate($r, [
-        'name' => 'required|unique:teams|max:255|regex:/^[a-zA-Z0-9-_]+$/',
+        'name' => 'required||max:255|',
+        'url' => 'required|unique:teams|max:255|regex:/^[a-zA-Z0-9-_]+$/',
       ]);
       $t = new Team;
       $t->name = $r->name;
+      $t->url = $r->url;
+      $t->invite = rand_64(11);
       $t->save();
 
       $u = Auth::user();

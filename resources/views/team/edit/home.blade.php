@@ -3,6 +3,6 @@
 
 @section('team')
 
-  <editor team="{{$team->name}}"></editor>
-  
+  <editor team="{{$team->url}}"></editor>
+
 @endsection

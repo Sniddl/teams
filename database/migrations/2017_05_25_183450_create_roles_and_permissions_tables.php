@@ -24,7 +24,14 @@ class CreateRolesAndPermissionsTables extends Migration
             $table->string('name');
             $table->timestamps();
         });
-        
+
+
+        DB::table('permissions')->insert(['name' => 'manage users']);
+        DB::table('permissions')->insert(['name' => 'manage roles']);
+        DB::table('permissions')->insert(['name' => 'edit page']);
+        DB::table('permissions')->insert(['name' => 'create invites']);
+        DB::table('permissions')->insert(['name' => 'view']);
+
 
     }
 

@@ -16,17 +16,20 @@
         </div>
 
         <div class="pages">
-          <div class="link">
-            <span class="text" v-if="edit == 'editing'" @click="$root.go(`/team/${team}/edit/home`)">Home</span>
-            <span class="text" v-else="" @click="$root.go(`/team/${team}/home`)">Home</span>
+          <div class="link" @click="route('home')">
+            <span class="text" v-if="edit == 'editing'" >Home</span>
+            <span class="text" v-else="" >Home</span>
           </div>
-          <div class="link">
-            <span class="text" v-if="edit == 'editing'" @click="$root.go(`/team/${team}/edit/roster`)">Roster</span>
-            <span class="text" v-else="" @click="$root.go(`/team/${team}/roster`)">Roster</span>
+          <div class="link" @click="route('roster')">
+            <span class="text" v-if="edit == 'editing'" >Roster</span>
+            <span class="text" v-else="" >Roster</span>
           </div>
-          <div class="link">
-            <span class="text" v-if="edit == 'editing'" @click="$root.go(`/team/${team}/edit/about`)">About</span>
-            <span class="text" v-else="" @click="$root.go(`/team/${team}/about`)">About</span>
+          <div class="link" @click="route('about')">
+            <span class="text" v-if="edit == 'editing'">About</span>
+            <span class="text" v-else="" >About</span>
+          </div>
+          <div class="link" v-if="edit == 'editing'" @click="route('settings')">
+            <span class="text" >Settings</span>
           </div>
         </div>
       </div>
@@ -41,8 +44,13 @@
             window.addEventListener('scroll', this.scroll);
         },
         methods: {
-          save: function () {
-
+          route: function (page) {
+            if (this.edit == 'editing'){
+              this.$root.go(`/team/${this.team}/edit/${page}`)
+            }
+            else {
+              this.$root.go(`/team/${this.team}/${page}`)
+            }
           },
           scroll: function (e) {
             if($('.banner')[0].getBoundingClientRect().bottom <= 0) {
