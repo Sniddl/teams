@@ -19,7 +19,9 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
+    "quill": "^1.2.6",
     "v-tooltip": "^2.0.0-beta.4",
-    "vue-quill-editor": "^2.2.1"
+    "vue-quill-editor": "^2.2.1",
+    "vue2-medium-editor": "^1.0.6"
   }
 }

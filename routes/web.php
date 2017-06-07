@@ -30,10 +30,11 @@ Auth::routes();
 Route::group(['prefix'=> 'team'], function () {
   Route::post('create', 'TeamController@create');
   Route::get('settings', 'SettingsController@team');
-  Route::group(['prefix'=> 'edit'], function () {
-    Route::get('home', 'EditController@home');
+  Route::get('{name}/posts', 'PostController@get');
+  Route::get('{name}/{page?}', 'TeamController@page');
+  Route::group(['prefix'=> '{team}/edit'], function ($team) {
+    Route::get('{page}', 'EditController@home');
   });
-  Route::get('{name}', 'TeamController@page');
 });
 
 Route::group(['prefix'=> 'me'], function () {
@@ -44,6 +45,11 @@ Route::group(['prefix'=> 'me'], function () {
     return back();
   });
 });
+
+Route::group(['prefix'=> 'post'], function () {
+  Route::post('create', 'PostController@create');
+});
+
 
 
 

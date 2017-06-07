@@ -6,7 +6,7 @@
  */
 
 require('./bootstrap');
-
+import editor from 'vue2-medium-editor'
 window.Vue = require('vue');
 
 /**
@@ -14,7 +14,7 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
- 
+
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
@@ -23,8 +23,12 @@ Vue.component('module', require('./components/Module.vue'));
 Vue.component('banner', require('./components/Banner.vue'));
 Vue.component('navbar', require('./components/Navbar.vue'));
 Vue.component('editor', require('./components/Editor.vue'));
+Vue.component('post', require('./components/Post.vue'));
 
 const App = new Vue({
+    components: {
+      'medium-editor': editor
+    },
     el: '#app',
     methods: {
       go: function (route) {

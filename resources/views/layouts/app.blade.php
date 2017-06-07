@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet">
 
     <script src="https://use.fontawesome.com/d3ead56ef6.js"></script>
 
@@ -32,3 +33,6 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
+<!-- <script src="https://cdn.quilljs.com/1.2.6/quill.js"></script> -->
+
+<!-- Initialize Quill editor -->

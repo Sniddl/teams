@@ -39,9 +39,9 @@ class TeamController extends Controller
     }
 
 
-    public function page($name) {
+    public function page($name, $page=null) {
       $team = Team::search($name);
-      // return Auth::user()->hasPermission($team, 'edit page');
-      return view('team.home')->with('team', $team);
+      if(!$page) return view("team.home")->with('team', $team);
+      return view("team.$page")->with('team', $team);
     }
 }

@@ -9,47 +9,21 @@
   <li>pages</li>
 </ul> -->
 
-@extends('layouts.app')
+@extends('team.layout')
 
-@section('content')
-<banner></banner>
+@section('team')
 
+    @foreach($team->posts as $post)
+      <post text="{{$post->text}}" time="{{$post->created_at->diffForHumans()}}" title="{{$post->title}}"></post>
+    @endforeach
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">{{$team->name}}</div>
-
-                <div class="panel-body">
-
-                  @can('manage users', $team)
-                    <li>can manage users</li>
-                  @endcan
-
-                  @can('manage roles', $team)
-                    <li>can manage roles</li>
-                  @endcan
-
-                  @can('edit page', $team)
-                    <li>can edit page</li>
-                  @endcan
-
-                  @can('create invites', $team)
-                    <li>can create invites</li>
-                  @endcan
-
-                  @can('view', $team)
-                    <li>can view</li>
-                  @endcan
-
-
-
-
-
-                </div>
-            </div>
+    @if($team->posts->count() < 1)
+    <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>Uh-oh!</h3>
+           <p>This team hasn't posted anything yet. Please come back soon.
         </div>
     </div>
-</div>
+    @endif
+
 @endsection
